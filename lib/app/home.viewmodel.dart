@@ -77,7 +77,7 @@ extension VMPlayerHelpers on HomeViewModel {
     // homeModel.data![index].url ?? ""
     isLoading = true;
 
-    print(urlsList);
+    // print(urlsList);
 
     final urlString = url == "no url provided" ? urlsList[index] : url;
 
@@ -88,7 +88,7 @@ extension VMPlayerHelpers on HomeViewModel {
     // if (_controller != null)
     await _controller.pause();
 
-    _controller.removeListener(() {});
+    // _controller.dispose
 
     await _controller.dispose();
 

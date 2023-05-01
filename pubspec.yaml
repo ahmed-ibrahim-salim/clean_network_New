@@ -46,7 +46,7 @@ dependencies:
   #UTITILES
   freezed_annotation: ^2.2.0
   freezed: ^2.3.2
-  connectivity_plus: ^3.0.6
+  # connectivity_plus: ^3.0.6
 
 dev_dependencies:
   flutter_test:

@@ -83,6 +83,8 @@ extension VMPlayerHelpers on HomeViewModel {
     print("chosen url after change video");
     print(urlString);
 
+//https: //stackoverflow.com/questions/58955831/flutter-video-player-dispose
+
     // pause last video
     if (_controller != null) {
       await _controller!.pause();

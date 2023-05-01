@@ -111,9 +111,8 @@ extension VMNetworkHelpers on HomeViewModel {
         final urls = data
             .map((video) {
               if (video.url!.endsWith('.mp4')) return video.url;
-
-              // .toList();
             })
+            // to clear null values
             .whereType<String>()
             .toList();
         //
@@ -126,6 +125,7 @@ extension VMNetworkHelpers on HomeViewModel {
             .map((url) {
               if (_getValidUrlOnly(url)) return url;
             })
+            // to clear null values
             .whereType<String>()
             .toList();
 
@@ -133,7 +133,7 @@ extension VMNetworkHelpers on HomeViewModel {
         //
         break;
     }
-    //
+    // to play video
     changeVideo(0, url: urlsList[0]);
   }
 

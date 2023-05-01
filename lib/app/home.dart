@@ -43,9 +43,20 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, index) {
                 // index = index % (model.urlsList.length);
                 // auto play on start
-                model.controller.play();
-
-                return videoCard(model.controller);
+                if (model.controller != null) {
+                  //
+                  model.controller!.play();
+                  return videoCard(model.controller!);
+                } else {
+                  //
+                  return Center(
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: CircularProgressIndicator(color: Colors.white),
+                    ),
+                  );
+                }
               },
               onPageChanged: (index) {
                 //

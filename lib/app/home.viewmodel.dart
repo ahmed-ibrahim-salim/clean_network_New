@@ -1,10 +1,9 @@
 import 'package:clean_network/app/view_models/loading.viewmodel.dart';
 import 'package:flutter/foundation.dart';
+import 'package:video_player/video_player.dart';
 
 import '../core/models/videos_for_chef.dart';
 import '../core/placeholder_service.dart';
-
-import 'package:video_player/video_player.dart';
 
 class HomeViewModel extends LoadingViewModel {
   //1 injecting Home Network service
@@ -59,8 +58,8 @@ class HomeViewModel extends LoadingViewModel {
     // notifyListeners();
   }
 
-  VideoPlayerController _controller = VideoPlayerController.network("");
-  VideoPlayerController get controller => _controller;
+  VideoPlayerController? _controller = VideoPlayerController.network("");
+  VideoPlayerController? get controller => _controller;
 }
 
 // MARK: - Player Helpers
@@ -75,9 +74,9 @@ extension VMPlayerHelpers on HomeViewModel {
   // Player controller
   changeVideo(index, {String url = "no url provided"}) async {
     // homeModel.data![index].url ?? ""
-    isLoading = true;
 
     // print(urlsList);
+    isLoading = true;
 
     final urlString = url == "no url provided" ? urlsList[index] : url;
 
@@ -85,12 +84,14 @@ extension VMPlayerHelpers on HomeViewModel {
     print(urlString);
 
     // pause last video
-    // if (_controller != null)
-    await _controller.pause();
+    if (_controller != null) {
+      await _controller!.pause();
+      await _controller!.dispose();
+    }
+    //
+    _controller = null;
 
-    // _controller.dispose
-
-    await _controller.dispose();
+    // .then((value) => _controller = VideoPlayerController.network(""));
 
     // to clear screen after removing player
     // notifyListeners();

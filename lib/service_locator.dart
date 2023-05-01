@@ -1,6 +1,5 @@
 import 'package:get_it/get_it.dart';
 
-import 'app/home.viewmodel.dart';
 import 'core/placeholder_service.dart';
 
 final locator = GetIt.instance;

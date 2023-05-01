@@ -6,19 +6,6 @@ import '../core/placeholder_service.dart';
 
 import 'package:video_player/video_player.dart';
 
-const publicVideos = [
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/Sintel.jpg",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
-];
-
 class HomeViewModel extends LoadingViewModel {
   //1 injecting Home Network service
   final HomeRepo repo;
@@ -32,17 +19,8 @@ class HomeViewModel extends LoadingViewModel {
 //2) making getter & setter for returned Model
 
   // Default
-  late VideosForChefModel _homeModel = VideosForChefModel();
+  late VideosForChefModel videosForChefModel = VideosForChefModel();
   List<String> urlsList = [];
-  // Getter
-  VideosForChefModel get homeModel => _homeModel;
-
-  // setter
-  set homeModel(VideosForChefModel homeModel) {
-    _homeModel = homeModel;
-
-    // notifyListeners();
-  }
 
   // Network call
   Future<void> fetchData() async {
@@ -57,29 +35,23 @@ class HomeViewModel extends LoadingViewModel {
       data.when(success: (videosForChef) {
         // Success
         if (kDebugMode) print(videosForChef.data!.first.chef!.name);
-        homeModel = videosForChef;
 
-        if (false) {
-          // play first video
-          final urls = homeModel.data!
-              .map((video) {
-                if (video.url!.endsWith('.mp4')) return video.url;
+        videosForChefModel = videosForChef;
 
-                // .toList();
-              })
-              .whereType<String>()
-              .toList();
-          //
-          urlsList = urls;
-        } else {
-          //
-          urlsList = publicVideos;
-          changeVideo(0, url: urlsList[0]);
-        }
+        // change ro local
+        // _useLocalUrlsOrBackEndUrls(
+        //     LocalUrlsOrBackEndUrls.backend, videosForChef.data!);
+
+        // change ro local
+        _useLocalUrlsOrBackEndUrls(LocalUrlsOrBackEndUrls.local, []);
         //
       }, failure: (networkError) {
         // Failed
         if (kDebugMode) print({networkError.localizedErrorMessage});
+
+        // play from local
+        urlsList = publicVideos;
+        changeVideo(0, url: urlsList[0]);
       });
     });
 
@@ -87,9 +59,12 @@ class HomeViewModel extends LoadingViewModel {
     // notifyListeners();
   }
 
-  VideoPlayerController? _controller;
-  VideoPlayerController? get controller => _controller;
+  VideoPlayerController _controller = VideoPlayerController.network("");
+  VideoPlayerController get controller => _controller;
+}
 
+// MARK: - Player Helpers
+extension VMPlayerHelpers on HomeViewModel {
   Future<VideoPlayerController> _instantiateController(String url) async {
     VideoPlayerController controller = VideoPlayerController.network(url);
     await controller.initialize();
@@ -97,44 +72,92 @@ class HomeViewModel extends LoadingViewModel {
     return controller;
   }
 
-  bool newIndexIsAvailable(int index) {
-    final listOfIndices = List.generate(urlsList.length, (i) => i);
-
-    if (listOfIndices.contains(index)) {
-      print("index chosn");
-      print(index);
-      return true;
-    }
-
-    return false;
-  }
-
   // Player controller
   changeVideo(index, {String url = "no url provided"}) async {
     // homeModel.data![index].url ?? ""
+    isLoading = true;
+
+    print(urlsList);
+
     final urlString = url == "no url provided" ? urlsList[index] : url;
 
     print("chosen url after change video");
     print(urlString);
 
     // pause last video
-    if (_controller != null) _controller!.pause();
+    // if (_controller != null)
+    await _controller.pause();
 
-    // start controller with new video
-    // if (_controller != null) {
-    // _controller!.removeListener(() {});
-    _controller = null;
+    _controller.removeListener(() {});
+
+    await _controller.dispose();
 
     // to clear screen after removing player
-    notifyListeners();
+    // notifyListeners();
 
     _controller = await _instantiateController(urlString);
-    // }
 
-    _controller!.play();
+    isLoading = false;
 
     prevVideo = index;
-
-    notifyListeners();
   }
 }
+
+// MARK: - Network and Data Helpers
+extension VMNetworkHelpers on HomeViewModel {
+  _useLocalUrlsOrBackEndUrls(LocalUrlsOrBackEndUrls toUse, List<Datum> data) {
+    switch (toUse) {
+      case LocalUrlsOrBackEndUrls.backend:
+        final urls = data
+            .map((video) {
+              if (video.url!.endsWith('.mp4')) return video.url;
+
+              // .toList();
+            })
+            .whereType<String>()
+            .toList();
+        //
+        urlsList = urls;
+        // changeVideo(0, url: urlsList[0]);
+
+        break;
+      case LocalUrlsOrBackEndUrls.local:
+        final validPublicVideos = publicVideos
+            .map((url) {
+              if (_getValidUrlOnly(url)) return url;
+            })
+            .whereType<String>()
+            .toList();
+
+        urlsList = validPublicVideos;
+        //
+        break;
+    }
+    //
+    changeVideo(0, url: urlsList[0]);
+  }
+
+  //
+  //
+  bool _getValidUrlOnly(String url) {
+    return url.endsWith('.mp4');
+  }
+}
+
+enum LocalUrlsOrBackEndUrls {
+  local,
+  backend;
+}
+
+const publicVideos = [
+  "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+  "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+  "https://storage.googleapis.com/gtv-videos-bucket/sample/Sintel.jpg",
+  "https://storage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+  "https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+];

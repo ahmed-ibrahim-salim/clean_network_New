@@ -1,10 +1,7 @@
 import 'package:clean_network/app/home.viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
-
-import '../service_locator.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,22 +15,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    //
+    // getting provider from context after initialised on RunApp
     homeViewModel = Provider.of<HomeViewModel>(context, listen: false);
 
     homeViewModel.fetchData();
-    // service.videosForChef().then((data) {
-    //   setState(() {
-    //     videosForChef = data;
-    //   });
-    //   data.when(success: (videosForChef) {
-    //     // Success
-    //     if (kDebugMode) print(videosForChef.data!.first.chef!.name);
-    //   }, failure: (networkError) {
-    //     // Failed
-    //     if (kDebugMode) print({networkError.localizedErrorMessage});
-    //   });
-    // });
+    //
     super.initState();
   }
 
@@ -55,35 +41,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 viewportFraction: 1,
               ),
               itemBuilder: (context, index) {
-                index = index % (model.urlsList.length);
-                //
-                return checkVideoControllerAndGetWidget(model);
+                // index = index % (model.urlsList.length);
+                // auto play on start
+                model.controller.play();
+
+                return videoCard(model.controller);
               },
               onPageChanged: (index) {
-                // if (model.newIndexIsAvailable(index))
-                model.changeVideo(index);
                 //
+                print(index);
+                model.changeVideo(index);
               },
             );
           },
-          child: Text("a"),
+          child: const Text("a"),
         ),
       ),
     );
-  }
-}
-
-Widget checkVideoControllerAndGetWidget(HomeViewModel viewModel) {
-  if (viewModel.controller == null) {
-    // while null reloading
-    return Center(
-      child: CircularProgressIndicator(),
-    );
-  } else {
-    // auto play on start
-    viewModel.controller!.play();
-
-    return videoCard(viewModel.controller!);
   }
 }
 
@@ -110,9 +84,9 @@ Widget videoCard(VideoPlayerController controller) {
               ),
             )
           : Container(
-              color: Colors.white,
+              color: Colors.black,
               child: Center(
-                child: Text("Loading"),
+                child: CircularProgressIndicator(color: Colors.white),
               ),
             );
     },

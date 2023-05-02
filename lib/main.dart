@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'app/home.viewmodel.dart';
-import 'app/home_screen.dart';
+import 'app/tabbar_screen.dart';
 import 'core/placeholder_service.dart';
 
 void main() async {
@@ -21,8 +21,7 @@ void main() async {
         //   value: PellenViewModel(repo: locator<PellenRepo>()),
         // ),
       ],
-      child: MaterialApp(home: HomeScreen()),
+      child: MaterialApp(home: TabBarScreen()),
     ),
   );
-  // MaterialApp(home: HomeScreen()));
 }

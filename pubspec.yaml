@@ -24,6 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  google_fonts: ^4.0.3
+
   cupertino_icons: ^1.0.5
 
   # UI Update
@@ -59,3 +61,7 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+  assets:
+    - assets/
+    # my_icon.png
+    # - assets/background.png

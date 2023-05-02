@@ -2,8 +2,8 @@ import 'package:clean_network/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'app/home.dart';
 import 'app/home.viewmodel.dart';
+import 'app/home_screen.dart';
 import 'core/placeholder_service.dart';
 
 void main() async {

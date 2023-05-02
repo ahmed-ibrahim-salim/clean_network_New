@@ -50,7 +50,9 @@ class HomeViewModel extends LoadingViewModel {
 
         // play from local
         urlsList = publicVideos;
-        changeVideo(0, url: urlsList[0]);
+
+        
+        // changeVideo(0, url: urlsList[0]);
       });
     });
 
@@ -64,7 +66,9 @@ class HomeViewModel extends LoadingViewModel {
 
 // MARK: - Player Helpers
 extension VMPlayerHelpers on HomeViewModel {
-  Future<VideoPlayerController> _instantiateController(String url) async {
+  String getLinkWithIndex(int index) => urlsList[index];
+
+  Future<VideoPlayerController> instantiateController(String url) async {
     VideoPlayerController controller = VideoPlayerController.network(url);
     await controller.initialize();
     controller.setLooping(true);
@@ -98,7 +102,7 @@ extension VMPlayerHelpers on HomeViewModel {
     // to clear screen after removing player
     // notifyListeners();
 
-    _controller = await _instantiateController(urlString);
+    _controller = await instantiateController(urlString);
 
     isLoading = false;
 

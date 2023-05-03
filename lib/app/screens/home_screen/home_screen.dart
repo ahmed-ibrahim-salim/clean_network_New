@@ -1,4 +1,4 @@
-import 'package:clean_network/app/home.viewmodel.dart';
+import 'package:clean_network/app/screens/home_screen/home.viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';

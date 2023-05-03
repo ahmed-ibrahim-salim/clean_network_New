@@ -2,8 +2,8 @@ import 'package:clean_network/app/view_models/loading.viewmodel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:video_player/video_player.dart';
 
-import '../core/models/videos_for_chef.dart';
-import '../core/placeholder_service.dart';
+import '../../../core/models/videos_for_chef.dart';
+import '../../../core/placeholder_service.dart';
 
 class HomeViewModel extends LoadingViewModel {
   //1 injecting Home Network service

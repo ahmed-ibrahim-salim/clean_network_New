@@ -1,10 +1,9 @@
 // MARK: - SDk
 import 'package:flutter/material.dart';
 
-import 'cards/card1.dart';
-import 'cards/card2.dart';
-import '../helpers/fooderlich_them.dart';
-import 'home_screen.dart';
+import '../../helpers/fooderlich_them.dart';
+import 'explore_screen.dart';
+import 'home_screen/home_screen.dart';
 
 class TabBarScreen extends StatefulWidget {
   const TabBarScreen({super.key});
@@ -20,8 +19,9 @@ class TabBarScreenState extends State<TabBarScreen> {
   // 8
   static List<Widget> pages = <Widget>[
     HomeScreen(),
-    const Card1(),
-    const Card2(),
+    ExploreScreen(),
+    // const Card1(),
+    // const Card2(),
   ];
 
 // 9
@@ -53,10 +53,10 @@ class TabBarScreenState extends State<TabBarScreen> {
             icon: Icon(Icons.card_giftcard),
             label: 'Card2',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            label: 'Card3',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.card_giftcard),
+          //   label: 'Card3',
+          // ),
         ],
       ),
     );

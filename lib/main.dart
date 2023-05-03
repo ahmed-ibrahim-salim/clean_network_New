@@ -2,8 +2,8 @@ import 'package:clean_network/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'app/home.viewmodel.dart';
-import 'app/tabbar_screen.dart';
+import 'app/screens/home_screen/home.viewmodel.dart';
+import 'app/screens/tabbar_screen.dart';
 import 'core/placeholder_service.dart';
 
 void main() async {
@@ -21,7 +21,10 @@ void main() async {
         //   value: PellenViewModel(repo: locator<PellenRepo>()),
         // ),
       ],
-      child: MaterialApp(home: TabBarScreen()),
+      child: MaterialApp(
+        home: TabBarScreen(),
+        debugShowCheckedModeBanner: false,
+      ),
     ),
   );
 }

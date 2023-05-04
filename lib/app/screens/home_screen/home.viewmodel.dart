@@ -52,7 +52,6 @@ class HomeViewModel extends LoadingViewModel {
         // change ro local
         _useLocalUrlsOrBackEndUrls(LocalUrlsOrBackEndUrls.local, []);
 
-        
         // changeVideo(0, url: urlsList[0]);
       });
     });

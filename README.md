@@ -11,7 +11,8 @@ used MVVM, Provider and dependency injection, you can dynamically decode models,
 <!-- ![](assets/screens/1-loading.png)
 ![](assets/screens/2-Video-playing.png) -->
 
-<img src="assets/screens/1-loading.png" width="150" height="300">
+<img src="assets/screens/1-loading.png" width="300" height="600"> <img src="assets/screens/2-Video-playing.png" width="300" height="600"> <img src="3-top-scroll.png" width="300" height="600"> <img src="4-full-scroll.png" width="300" height="600">
+
 
 ## Use Of
 

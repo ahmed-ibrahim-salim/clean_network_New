@@ -8,8 +8,10 @@ used MVVM, Provider and dependency injection, you can dynamically decode models,
 
 
 <!-- ![](assets/compare.jpeg) -->
-![](assets/screens/1-loading.png)
-![](assets/screens/2-Video-playing.png)
+<!-- ![](assets/screens/1-loading.png)
+![](assets/screens/2-Video-playing.png) -->
+
+<img src="assets/screens/1-loading.png" width="150" height="300">
 
 ## Use Of
 

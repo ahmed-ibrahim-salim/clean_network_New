@@ -1,5 +1,6 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:clean_network/core/network/interfaces/base_client_generator.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'repo_videos_for_chef.freezed.dart';
 
 // This is a request
@@ -12,7 +13,7 @@ class VideosForChefClient extends BaseClientGenerator
   const factory VideosForChefClient.videosForChef() = _VideosForChef;
 
   @override
-  String get baseURL => "https://chefshub.site/api/v1/";
+  String get baseURL => "https://google.com/";
 
   @override
   Map<String, dynamic> get header => {

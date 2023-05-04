@@ -49,7 +49,8 @@ class HomeViewModel extends LoadingViewModel {
         if (kDebugMode) print({networkError.localizedErrorMessage});
 
         // play from local
-        urlsList = publicVideos;
+        // change ro local
+        _useLocalUrlsOrBackEndUrls(LocalUrlsOrBackEndUrls.local, []);
 
         
         // changeVideo(0, url: urlsList[0]);

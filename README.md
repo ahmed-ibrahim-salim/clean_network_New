@@ -1,9 +1,14 @@
-# Flutter Clean Network Layer
+# Tiktok-Clone
 
-With Flutter's clean network layer, you can dynamically decode models, handle network errors, and create dynamic requests for each client.
+With Tiktok-Clone, you can view you favourite videos.
 
 
-![](assets/compare.jpeg)
+Features:
+used MVVM, Provider and dependency injection, you can dynamically decode models, handle network errors, and create dynamic requests for each client.
+
+
+<!-- ![](assets/compare.jpeg) -->
+![](assets/screens/1-loading.png)
 
 ## Use Of
 
@@ -18,7 +23,6 @@ NetworkExecuter.execute<PostModel,List<PostModel>>(route: PlaceHolderClient.post
 ```dart
 NetworkError.request({required DioError error})
 NetworkError.type({String? error})
-NetworkError.connectivity({String? message})
 ```
 
 ## Packages used
@@ -26,11 +30,11 @@ NetworkError.connectivity({String? message})
 freezed
 json_annotation
 dio
-connectivity
+video_player
+Get_it
+Provider
 ```
 
-## Articles
-#### English : https://ercangp.medium.com/clean-network-layer-in-flutter-dio-freezed-json-annotation-f5f2c41ac240
-#### Türkçe : https://ercangp.medium.com/flutterda-temiz-network-kullan%C4%B1m%C4%B1-dio-freezed-json-annotation-f61b9df2be08
+
 
 

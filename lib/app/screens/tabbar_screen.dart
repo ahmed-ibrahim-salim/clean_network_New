@@ -1,4 +1,5 @@
 // MARK: - SDk
+import 'package:clean_network/app/screens/recipes_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../helpers/fooderlich_them.dart';
@@ -20,6 +21,7 @@ class TabBarScreenState extends State<TabBarScreen> {
   static List<Widget> pages = <Widget>[
     HomeScreen(),
     ExploreScreen(),
+    RecipesScreen(),
     // const Card1(),
     // const Card2(),
   ];
@@ -37,6 +39,7 @@ class TabBarScreenState extends State<TabBarScreen> {
 
     // VideoApp
     return Scaffold(
+      appBar: AppBar(title: Text("Tiktok")),
       body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
@@ -47,16 +50,16 @@ class TabBarScreenState extends State<TabBarScreen> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.card_giftcard),
-            label: 'Card',
+            label: 'Main',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.card_giftcard),
-            label: 'Card2',
+            label: 'Explore',
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.card_giftcard),
-          //   label: 'Card3',
-          // ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.card_giftcard),
+            label: 'Recipes',
+          ),
         ],
       ),
     );

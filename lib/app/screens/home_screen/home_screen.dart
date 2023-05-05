@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(title: Text("Tiktok")),
+      // appBar: AppBar(title: Text("Tiktok")),
       body: Center(
         child: Consumer<HomeViewModel>(
           builder: (context, model, child) {

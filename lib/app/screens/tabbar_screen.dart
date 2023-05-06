@@ -49,15 +49,15 @@ class TabBarScreenState extends State<TabBarScreen> {
         // 6
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
+            icon: Icon(Icons.explore),
             label: 'Main',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
+            icon: Icon(Icons.book),
             label: 'Explore',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
+            icon: Icon(Icons.list),
             label: 'Recipes',
           ),
         ],

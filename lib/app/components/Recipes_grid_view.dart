@@ -6,9 +6,12 @@ import 'components.dart';
 class RecipesGridView extends StatelessWidget {
   // 1
   final List<SimpleRecipe> recipes;
+
   const RecipesGridView({
+    //
     super.key,
     required this.recipes,
+    //
   });
 
   @override

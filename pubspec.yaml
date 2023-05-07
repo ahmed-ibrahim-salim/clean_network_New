@@ -68,5 +68,5 @@ flutter:
     - assets/sample_data/
     - assets/profile_pics/
     - assets/screens/
-    # my_icon.png
-    # - assets/background.png
+    - assets/fooderlich_assets/
+

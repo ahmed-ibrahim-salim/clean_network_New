@@ -5,9 +5,11 @@ import 'package:provider/provider.dart';
 import 'app/screens/home_screen/home.viewmodel.dart';
 import 'app/screens/tabbar_screen.dart';
 import 'core/placeholder_service.dart';
+import 'helpers/fooderlich_them.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final theme = FooderlichTheme.light();
 
   setupServiceLocator();
 
@@ -22,6 +24,7 @@ void main() async {
         // ),
       ],
       child: MaterialApp(
+        theme: theme,
         home: TabBarScreen(),
         debugShowCheckedModeBanner: false,
       ),

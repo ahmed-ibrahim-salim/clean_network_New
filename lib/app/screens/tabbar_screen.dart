@@ -2,8 +2,8 @@
 import 'package:clean_network/app/screens/recipes_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../helpers/fooderlich_them.dart';
 import 'explore_screen.dart';
+import 'grocery_screen/grocery_screen.dart';
 import 'home_screen/home_screen.dart';
 
 class TabBarScreen extends StatefulWidget {
@@ -14,7 +14,7 @@ class TabBarScreen extends StatefulWidget {
 }
 
 class TabBarScreenState extends State<TabBarScreen> {
-  static final theme = FooderlichTheme.light();
+  // static final theme = FooderlichTheme.light();
   // 7
   int _selectedIndex = 0;
   // 8
@@ -22,8 +22,7 @@ class TabBarScreenState extends State<TabBarScreen> {
     HomeScreen(),
     ExploreScreen(),
     RecipesScreen(),
-    // const Card1(),
-    // const Card2(),
+    GroceryScreen(),
   ];
 
 // 9
@@ -45,12 +44,14 @@ class TabBarScreenState extends State<TabBarScreen> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         // 5
+        // selectedItemColor: Colors.black,
+        // unselectedItemColor: Colors.blueGrey,
         selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
         // 6
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.explore),
-            label: 'Main',
+            label: 'Videos',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.book),
@@ -59,6 +60,10 @@ class TabBarScreenState extends State<TabBarScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
             label: 'Recipes',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'To buy',
           ),
         ],
       ),

@@ -1,3 +1,4 @@
+import 'package:clean_network/app/models/models.dart';
 import 'package:clean_network/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +20,9 @@ void main() async {
         ChangeNotifierProvider(
           create: (_) => HomeViewModel(repo: locator<HomeRepo>()),
         ),
+        ChangeNotifierProvider(
+          create: (_) => TabManager(),
+        )
         // ChangeNotifierProvider.value(
         //   value: PellenViewModel(repo: locator<PellenRepo>()),
         // ),

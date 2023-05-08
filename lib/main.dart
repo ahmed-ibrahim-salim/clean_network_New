@@ -22,10 +22,8 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (_) => TabManager(),
-        )
-        // ChangeNotifierProvider.value(
-        //   value: PellenViewModel(repo: locator<PellenRepo>()),
-        // ),
+        ),
+        ChangeNotifierProvider(create: (_) => GroceryManager()),
       ],
       child: MaterialApp(
         theme: theme,

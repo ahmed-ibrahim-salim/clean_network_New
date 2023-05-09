@@ -1,3 +1,4 @@
+import 'package:clean_network/app/screens/grocery_screen/grocery_item_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,6 +14,20 @@ class GroceryScreen extends StatelessWidget {
         child: const Icon(Icons.add),
         onPressed: () {
           // TODO: Present GroceryItemScreen
+
+          final manager = Provider.of<GroceryManager>(context, listen: false);
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => GroceryItemScreen(
+                  // item is received from inside the widget to here 
+                  onCreate: (item) {
+                    manager.addItem(item);
+                  },
+                  onUpdate: (item) {}),
+            ),
+          );
         },
       ),
       body: buildGroceryScreen(),

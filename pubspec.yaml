@@ -38,6 +38,13 @@ dependencies:
   get_it: ^7.1.3
 
 
+
+  flutter_colorpicker: ^1.0.3
+  intl: ^0.17.0
+  uuid: ^3.0.6
+
+
+
   #NETWORK
   json_annotation: ^4.8.0
   json_serializable: ^6.6.1

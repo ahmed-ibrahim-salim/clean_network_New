@@ -38,6 +38,19 @@ class GroceryItemScreenState extends State<GroceryItemScreen> {
 
     final originalItem = widget.originalItem;
     if (originalItem != null) {
+      //
+      _nameController.text = originalItem.name;
+      _name = originalItem.name;
+      _currentSliderValue = originalItem.quantity;
+      _importance = originalItem.importance;
+      _currentColor = originalItem.color;
+      final date = originalItem.date;
+      _timeOfDay = TimeOfDay(
+        hour: date.hour,
+        minute: date.minute,
+      );
+      _dueDate = date;
+
 // 2
       _nameController.addListener(() {
         setState(() {
@@ -57,5 +70,12 @@ class GroceryItemScreenState extends State<GroceryItemScreen> {
     // TODO: Add buildTimeField()
     // TODO: Add buildColorPicker()
     // TODO: Add buildQuantityField()
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _nameController.dispose();
+    super.dispose();
   }
 }
